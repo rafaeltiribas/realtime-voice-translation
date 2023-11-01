@@ -3,8 +3,10 @@
 # (Google Translate API) for [Text translation], intall using -pip install googletrans==3.1.0a0
 
 from googletrans import Translator
+
 import speech_recognition as sr
-import pyaudio
+
+import pyaudio # foi?
 
 init_rec = sr.Recognizer()
 print("Let's speak!!")
