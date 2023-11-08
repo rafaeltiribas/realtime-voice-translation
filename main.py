@@ -7,6 +7,12 @@ from googletrans import Translator
 import speech_recognition as sr
 import pyaudio
 
+# Cloud API imports
+import queue
+import re
+import sys
+# from google.cloud import speech
+
 '''
 init_rec = sr.Recognizer()
 print("Let's speak!!")
