@@ -6,6 +6,7 @@
 from googletrans import Translator
 import speech_recognition as sr
 import pyaudio
+import pyttsx3
 
 # Cloud API imports
 import queue
@@ -13,23 +14,20 @@ import re
 import sys
 # from google.cloud import speech
 
-'''
-init_rec = sr.Recognizer()
-print("Let's speak!!")
-with sr.Microphone() as source:
-    audio_data = init_rec.record(source, duration=5)
-    print("Recognizing your text.............")
-    text = init_rec.recognize_google(audio_data)
-    print(text)
-'''
-
 DEST_LANGUAGE = 'pt'
 
 # Init translator
 translator = Translator()
 
-text = 'Did you see the accident last week?'
+# Init text-to-speech
+text_speech = pyttsx3.init()
 
-translated_text = translator.translate(text, DEST_LANGUAGE).text
-
-print(translated_text)
+while True:
+    init_rec = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio_data = init_rec.record(source, duration=5)
+        text = init_rec.recognize_google(audio_data)
+        translated_text = translator.translate(text, DEST_LANGUAGE).text
+        text_speech.say(translated_text)
+        text_speech.runAndWait()
+        print(translated_text)
